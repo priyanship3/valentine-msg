@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: #fff8e1;
             padding: 20px;
+            overflow: hidden;
         }
         .container {
             max-width: 600px;
@@ -18,6 +19,7 @@
             background: #ffeb3b;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         h1 {
             color: #d81b60;
@@ -40,6 +42,20 @@
         .btn:hover {
             background: #c2185b;
         }
+        .image-container {
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.7; }
+            100% { transform: translateY(-200px) scale(1); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -47,8 +63,25 @@
         <h1>Happy Valentine's Day, My Love! ❤️</h1>
         <p>You are my sunshine, my favorite bloom, and the best part of my life! 🌻</p>
         <p>Even though we're apart, my love for you grows stronger every day. 💕</p>
-        <p>Click the button below for a little surprise!</p>
-        <button class="btn" onclick="alert('I LOVE YOU MORE THAN SUNFLOWERS! 🌻❤️')">Tap Me!</button>
+        <div class="image-container">
+            <img src="https://source.unsplash.com/400x300/?love,romantic" alt="Love Image" width="100%" style="border-radius:10px;">
+        </div>
+        <button class="btn" onclick="showHearts()">Tap Me!</button>
     </div>
+    <script>
+        function showHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "%";
+                heart.style.top = "100%";
+                heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }
+            alert('I LOVE YOU MORE THAN SUNFLOWERS! 🌻❤️');
+        }
+    </script>
 </body>
 </html>
